@@ -11,6 +11,8 @@ On choisit d’implémenter le projet 2.1 en OCaml : on esquisse nos premières 
 
 ![Départ du projet](./imgs/depart.png)
 
-On créait donc notre structure d'énumération OCaml pour un \emph{pattern matching} efficace
+On créait donc notre structure d'énumération OCaml pour un pattern matching efficace, et on créait des fonctions pour qu'elles soient transverses en terme de type (string, int).
+
+![Système de manipulation de l'énumération OCaml](./imgs/enum_manip.png)
 
 ### Organisation du tournoi
