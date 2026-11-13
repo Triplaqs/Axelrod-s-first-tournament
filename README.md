@@ -26,7 +26,7 @@ On découpe le fonctionnement du tournoi en plusieurs sous-parties :
 
 - Une fonction ```tournoi``` qui vient préparer les paramètres pour ```debut_partie``` et lancer les 10 affrontements dénombrés lors du tournoi (chaque IA affronte chaque IA sans s'affronter elle-même ; ainsi $nb_{affrontements} = \frac{5 \times 4}{2} = 10$)
 
-- Une fonction ```joue_coup``` qui vient avec l'information de la stratégie utilisée ainsi que l'historique des coups de la partie calculer le coup qu'elle va jouer (et le renvoie au sein de ```partie```).
+- Une fonction ```joue_coup``` qui vient, avec l'information de la stratégie utilisée ainsi que l'historique des coups de la partie, calculer le coup qu'elle va jouer (et le renvoie au sein de ```partie```).
 
 ### Implémentation de chaque partie de l'organisation du tournoi
 
