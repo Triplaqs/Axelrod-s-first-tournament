@@ -25,4 +25,4 @@ On découpe le fonctionnement du tournoi en plusieurs sous parties :
 
 ![Fonctions liées aux parties](./imgs/parties_fini.png)
 
-- Une fonction ```tournoi``` qui vient préparer les paramètres pour ```debut_partie``` et lancer les 10 affrontements dénombrés lors du tournoi (chaque IA affronte chaque IA sans s'affronter elle-même \int)
+- Une fonction ```tournoi``` qui vient préparer les paramètres pour ```debut_partie``` et lancer les 10 affrontements dénombrés lors du tournoi (chaque IA affronte chaque IA sans s'affronter elle-même $f_6$)
