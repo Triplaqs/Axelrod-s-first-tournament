@@ -19,7 +19,7 @@ On créait donc notre structure d'énumération OCaml pour un pattern matching e
 On découpe le fonctionnement du tournoi en plusieurs sous parties :
 
 - Une fonction ```partie``` qui se chargera d'éffectuer le déroulement d'une énonciation de coups entre 2 joueurs (=stratégies).
-- 
+
 
 - Une fonction ```debut_partie``` qui va préparer le terrain et les paramètres de ```partie``` en la lançant le nombre de fois nécessaires au tournoi (200 fois).
 
