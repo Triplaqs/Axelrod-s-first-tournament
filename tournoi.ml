@@ -34,12 +34,12 @@ let strat_to_int (j:strat) :int =
 (*et inversement*)
 let int_to_strat (i:int) :strat = 
   match i with
-    0 -> ALL_D | 1 -> RANDOM | 2 -> TIT_FOR_TAT | 3 -> TESTER | 4 -> JOSS;;
+    0 -> ALL_D | 1 -> RANDOM | 2 -> TIT_FOR_TAT | 3 -> TESTER | _ -> JOSS;;
 
 (*renvoie un string de chaque strat*)
 let strat_to_string (j:strat) :string = 
   match j with
-    ALL_D -> "ALL_D" | RANDOM -> "RANDOM" | TIT_FOR_TAT -> "TIT_FOR_THAT" | TESTER -> "TESTER" | JOSS -> "JOSS";;
+    ALL_D -> "ALL_D" | RANDOM -> "RANDOM" | TIT_FOR_TAT -> "TIT_FOR_TAT" | TESTER -> "TESTER" | JOSS -> "JOSS";;
 
 (*Fonction qui régit le déroulement d'une manche entre 2 joueurs*)
 let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref) (cpt:int ref):unit = 
@@ -69,7 +69,7 @@ let debut_partie (s:score) (j1:strat) (j2:strat) :unit =
     let sc1 = ref 0 in 
     let sc2 = ref 0 in 
     let cpt= ref 0 in
-    let p = Array.make 200 C in
+    let p = Array.make 400 C in
     while !cpt < 200 do 
       partie p s j1 j2 sc1 sc2 cpt;
     done; 
@@ -80,5 +80,24 @@ let debut_partie (s:score) (j1:strat) (j2:strat) :unit =
 (*Lancement du tournoi qui va contenir toutes les parties entre chaque joueur*)
 let tournoi () :unit = 
   let sco = Array.make nb_s 0 in (*on énumère tous les affrontements car le dénombrement est trop spécifique à généraliser*)
-  debut_partie sco 
-    ();;
+  (*avec ALL_D*)
+  debut_partie sco ALL_D RANDOM;
+  debut_partie sco ALL_D TIT_FOR_TAT;
+  debut_partie sco ALL_D TESTER;
+  debut_partie sco ALL_D JOSS;
+  (*avec RANDOM*)
+  debut_partie sco RANDOM TIT_FOR_TAT;
+  debut_partie sco RANDOM TESTER;
+  debut_partie sco RANDOM JOSS;
+  (*Avec TIT_FOR_THAT*)
+  debut_partie sco TIT_FOR_TAT TESTER;
+  debut_partie sco TIT_FOR_TAT JOSS;
+  (*avec TESTER*)
+  debut_partie sco TESTER JOSS;
+  print_string "RÉSULTATS :\n";
+  for i=0 to 4 do
+    print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
+  done;;
+
+
+  tournoi ();;
