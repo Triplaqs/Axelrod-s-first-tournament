@@ -6,7 +6,7 @@ Axelrod’s first tournament agent implementation in OCaml.
 
 ### Départ
 
-On choisit d’implémenter notre projet en OCaml : on esquisse nos premières structures et fonctions typées suivant l’idée de départ de direction d’implémentation ; on affinera avec les contraintes concrètes plus tard.
+On choisit d’implémenter notre projet en OCaml : on esquisse nos premières structures et fonctions typées suivant notre idée de départ de direction d’implémentation ; on affinera avec les contraintes concrètes plus tard.
 
 ![Départ du projet](./imgs/depart.png)
 
