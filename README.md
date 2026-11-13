@@ -16,7 +16,7 @@ On créait donc notre structure d'énumération OCaml pour un pattern matching e
 
 ### Organisation du tournoi
 
-On découpe le fonctionnement du tournoi en plusieurs sous parties :
+On découpe le fonctionnement du tournoi en plusieurs sous-parties :
 
 - Une fonction ```partie``` qui se chargera d'éffectuer le déroulement d'une énonciation de coups entre 2 joueurs (=stratégies).
 
