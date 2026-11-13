@@ -8,7 +8,6 @@ Axelrod’s first tournament agent implementation in OCaml.
 
 On choisit d’implémenter notre projet en OCaml : on esquisse nos premières structures et fonctions typées suivant l’idée de départ de direction d’implémentation ; on affinera avec les contraintes concrètes plus tard.
 
-
 ![Départ du projet](./imgs/depart.png)
 
 On créait donc notre structure d'énumération OCaml pour un pattern matching efficace, et on créait des fonctions pour qu'elles soient transverses en terme de type (string, int).
@@ -25,4 +24,4 @@ On découpe le fonctionnement du tournoi en plusieurs sous parties :
 
 ![Fonctions liées aux parties](./imgs/parties_fini.png)
 
-- Une fonction ```tournoi``` qui vient préparer les paramètres pour ```debut_partie``` et lancer les 10 affrontements dénombrés lors du tournoi (chaque IA affronte chaque IA sans s'affronter elle-même $f_6$)
+- Une fonction ```tournoi``` qui vient préparer les paramètres pour ```debut_partie``` et lancer les 10 affrontements dénombrés lors du tournoi (chaque IA affronte chaque IA sans s'affronter elle-même $nb_{affrontements} = \frac{5 \times 4}{2} = 10$)
