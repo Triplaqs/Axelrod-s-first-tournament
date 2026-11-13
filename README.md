@@ -21,4 +21,8 @@ On découpe le fonctionnement du tournoi en plusieurs sous parties :
 
 - Une fonction ```partie``` qui se chargera d'éffectuer le déroulement d'une énonciation de coups entre 2 joueurs (=stratégies).
 
-- Une fonction lancement de parties qui
+- Une fonction ```debut_partie``` qui va préparer le terrain et les paramètres de ```partie``` en la lançant le nombre de fois nécessaires au tournoi (200 fois).
+
+![Fonctions liées aux parties](./imgs/parties_fini.png)
+
+- Une fonction ```tournoi``` qui vient préparer les paramètres pour ```debut_partie``` et lancer les 10 affrontements dénombrés lors du tournoi (chaque IA affronte chaque IA sans s'affronter elle-même \int)
