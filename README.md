@@ -48,5 +48,7 @@ Implémentation des coups :
 
 ![Fonctions stratégies bis](./imgs/coups_param2.png)
 
+On a du rajouter la variable ```tester_state``` en paramètre dans les appels de fonciton en cascade afin de retenir l'état de la séquence CCD de la stratégie.
+
 
 
