@@ -103,19 +103,22 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
         print_string ("\nscores : \n" ^ (strat_to_string j1) ^ " : "); print_int !s1;
         print_string ("\n" ^ (strat_to_string j2) ^ " : "); print_int !s2; print_string "\n";
         if !s1 > !s2 then 
-            (print_string ("Victoire de " ^(strat_to_string j1) ^ " sur " ^ (strat_to_string j2)^"\n");
+            (print_string ("Victoire de " ^(strat_to_string j1) ^ " sur " ^ (strat_to_string j2)^"\n\n");
           ) else (
               if !s1 < !s2 then 
-            (print_string ("Victoire de " ^(strat_to_string j2) ^ " sur " ^ (strat_to_string j1)^"\n");
+            (print_string ("Victoire de " ^(strat_to_string j2) ^ " sur " ^ (strat_to_string j1)^"\n\n");
           ) else (
-            print_string ("Égalité entre " ^(strat_to_string j2) ^ " et " ^ (strat_to_string j1)^"\n");
+            print_string ("Égalité entre " ^(strat_to_string j2) ^ " et " ^ (strat_to_string j1)^"\n\n");
           )
-          )
+        ) 
     ) else(  
       let coup_J1 = joue_coup p j1 0 cpt tester_state in
       let coup_J2 = joue_coup p j2 1 cpt tester_state in
-      
-      
+      (*TEST
+      if (!cpt mod 33)=0 then (
+        print_string ("coup J1 : "^(coup_to_string coup_J1)^"\n");
+        print_string ("coup J2 : "^(coup_to_string coup_J2)^"\n"););
+      TEST*)
       
       let coups = (coup_J1, coup_J2) in
       let score_J1, score_J2 = tuple_score coups in 
