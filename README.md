@@ -64,6 +64,11 @@ Voici 3 résultats obtenus à 3 lancers de programme différents ! Ils diffèren
 
 ![Résultats 3](./imgs/res3.png)
 
-Avec une étude assez grossière de la situation, on comprend pourquoi ```ALL_D``` est premier (et largement) ; en effet, si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
+on regarde un échantillon du déroulé d'un tour d'un échange pour voir si on a une certaine cohérence globale :
+
+
+![Introspection d'un tour](./imgs/inspection_coups.png)
+
+Concernant les résultats, avec une étude assez grossière de la situation, on comprend pourquoi ```ALL_D``` est premier (et largement) ; en effet, si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
 
 
