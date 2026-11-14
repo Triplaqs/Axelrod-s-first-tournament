@@ -51,4 +51,17 @@ Implémentation des coups :
 On a du rajouter la variable ```tester_state``` en paramètre dans les appels de fonciton en cascade afin de retenir l'état de la séquence CCD de la stratégie.
 
 
+### Résultats, tests et cohérence
+
+Voici 3 résultats obtenus à 3 lancers de programme différents ! Ils diffèrent à cause de la stratégie random, grossièrement le classement reste le même.
+
+
+![Résultats 1](./imgs/res1.png)
+
+
+![Réslutats 2](./imgs/res2.png)
+
+
+![Résultats 3](./imgs/res3.png)
+
 
