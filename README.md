@@ -42,5 +42,11 @@ Quant à la fonction tournoi (ci-dessous) on l'a achevée et après quelques pet
 
 Ici on constate que les scores sont tous identiques car nous n'avons toujours pas implémenté ```joue_coup``` : elle renvoie toujours C.
 
+Implémentation des coups :
+
+![Fonctions stratégies](./imgs/coups_param1.png)
+
+![Fonctions stratégies bis](./imgs/coups_param2.png)
+
 
 
