@@ -27,6 +27,21 @@ sans modification : 0
 
 ## Journal de bord du projet
 
+
+### Présentation
+
+Nous avons 5 stratégies qui vont s'affronter :
+
+```ALL_D```       : un vil joueur sans foi ni loi qui n'a aucun scrupule à trahir.
+
+```RANDOM```      : un joueur très peu soucieux de gagner qui préfère laisser sa victoire au hasard.
+
+```TIT_FOR_TAT``` : un joueur impliqué qui est prêt à faire des alliances en collaborant ou à se battre nuit et jour en trahissant sans cesse.
+
+```TESTER```      : un joueur manipulateur qui va essayer de savoir les intentions de son adversaire avant d'agir, en essayant d'attiser la confiance de son adversaire pour mieux le vaincre.
+
+```JOSS```        : un joueur qui va vouloir suivre ```TIT_FOR_TAT``` mais vouloir garder le contrôle en hésitant pas à trahir de temps en temps.
+
 ### Prévisions
 
 d'après le tableau des scores suivant :
