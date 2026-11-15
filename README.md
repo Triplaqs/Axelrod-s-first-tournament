@@ -181,7 +181,7 @@ Malheureusement les règles du jeu vont favoriser la trahison quand celui en fac
 
 Néanmoins dans le contexte présent, on n'a en effet pas 50% de chance que le joueur en face joue D, c'est un modèle qui atteint ses limites dans les faits, comme on l'a vu, on a plus intérêt de jouer D, c'est donc majoritairement des D face auxquels on risque de se fritter si on joue. En reprenant la reflexion de tout à l'heure : si on joue D on a soit 2 soit 5, et si on joue C on a entre 0 et 3. Alors si on développe un modèle plus hybride qui arrive à avoir les 5 points du D quand l'adversaire baisse sa garde, mais aussi jouer C pour qu'il puisse justement plus facilement la baisser. donc accepter d'avoir des 3 points pour essayer d'avoir plus tard des 5 à la place des 2.
 
-Notre première position est donc, à l'instar du tournoi
+Notre première position est donc, à l'instar du tournoi d'Axelrod de 1980 : ```TIT_FOR_TAT```
 
 ### Nouvelles stratégies : présentations et prévisions
 
