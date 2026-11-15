@@ -52,6 +52,14 @@ Si on joue D à un tour on a au pire 2, au mieux 5 ; donc 3.5 points de score de
 Tandis que si on joue C, on a au mieux 3 et au pire 0, donc 1.5 points de moyenne par tour (toujours dans le même modèle).
 Déjà jouer D semble très avantageux, on peut donc déceler une potentielle première place pour ```ALL_D```.
 
+```RANDOM``` pourrait avoir la bonne succession de coups qui maximiseraient les points, cependant... avoir la bonne combinaison 4 fois 200 coups d'affilé ? cela me semble peu probable, il y a aussi le moyen de miniser les points avec une probabilité équivalente, il devrait être dans les derniers.
+
+```TESTER``` semble avoir un fonctionnement qui marcherait si la personne en face était une personne consciente, mais si (comme présentement), les adversaires ne sont que des programmes élémentaires, la stratégie CCD me semble peu pertinente, faisant de ```TESTER``` soit au plus juste aussi bien que ```TIT_FOR_TAT```
+
+```JOSS``` un peu pareil que  ```TESTER``` cela se jouera sûrement au joueur en face.
+
+```TIT_FOR_TAT``` semble le plus flexible et versatile des différentes stratégies.
+
 ### Départ du projet
 
 On choisit d’implémenter notre projet en OCaml : on esquisse nos premières structures et fonctions typées suivant notre idée de départ de direction d’implémentation ; on affinera avec les contraintes concrètes plus tard.
