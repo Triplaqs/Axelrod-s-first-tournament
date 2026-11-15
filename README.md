@@ -235,6 +235,17 @@ On a enfin un programme et 2 nouveaux agents qui fonctionnent :
 
 ![Résultat à 7 agents pt3](./imgs/2res_3.png)
 
+Cette fois-ci notre classement global est le suivant :
+
+```
+1er  : TIT_FOR_TAT
+2ème : ALL_D
+3ème : JOSS
+4ème : TESTER
+5ème : RANDOM
+6ème : CHILD
+7ème : UNDECIDED
+```
 
 ### Nouvelles règles : présentations et prévisions
 
