@@ -8,18 +8,18 @@ Then enter the numbers according to what tournament you want to run. All the inf
 If you want to see the list of playable agents, here it is :
 
 ```
-ALL_D : 0
-RANDOM : 1 
+ALL_D       : 0
+RANDOM      : 1 
 TIT_FOR_TAT : 2
-TESTER : 3
-JOSS : 4 
-UNDECIDED : 5
+TESTER      : 3
+JOSS        : 4 
+UNDECIDED   : 5
 ```
 
 And here are the tournament features :
 
 ```
-?  :  0
+?  : 0
 ?  : 1
 ```
 
