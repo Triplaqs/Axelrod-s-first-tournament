@@ -6,6 +6,16 @@ The code with all the tournament can be compiled with ```ocamlc tournoi.ml -o ./
 
 ## Journal de bord du projet
 
+### Prévisions
+
+d'après le tableau des scores suivant :
+
+![Tableau des scores donné](./imgs/tab_sco.png)
+
+Si on joue D à un tour on a au pire 2, au mieux 5 ; donc 3.5 points de score de moyenne par tour (si dans un modèle de départ on considère qu'on a une chance sur deux que la personne en face joue C ou D).
+Tandis que si on joue C, on a au mieux 3 et au pire 0, donc 1.5 points de moyenne par tour (toujours dans le même modèle).
+Déjà jouer D semble très avantageux, on peut donc déceler une potentielle première place pour ```ALL_D```.
+
 ### Départ
 
 On choisit d’implémenter notre projet en OCaml : on esquisse nos premières structures et fonctions typées suivant notre idée de départ de direction d’implémentation ; on affinera avec les contraintes concrètes plus tard.
