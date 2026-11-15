@@ -12,15 +12,17 @@ ALL_D       : 0
 RANDOM      : 1 
 TIT_FOR_TAT : 2
 TESTER      : 3
-JOSS        : 4 
-UNDECIDED   : 5
+JOSS        : 4
+CHILD       : 5 
+UNDECIDED   : 6
 ```
 
 And here are the tournament features :
 
 ```
-?  : 0
+sans modification : 0
 ?  : 1
+?  : 2
 ```
 
 ## Journal de bord du projet
