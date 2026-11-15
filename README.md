@@ -209,7 +209,7 @@ Elle nous permet de selectionner un seul échange entre deux stratégies, on cho
 ![Résultat des 2 stratégies - partie 1](./imgs/res_oob1.png)
 ![Résultat des 2 stratégies - partie 2](./imgs/res_oob2.png)
 
-
+Cet échange créait une erreur : ```Fatal error: exception Invalid_argument("index out of bounds")``` : on utilise le débuggueur OCaml pour identifier cette erreur.
 
 ### Nouvelles règles : présentations et prévisions
 
