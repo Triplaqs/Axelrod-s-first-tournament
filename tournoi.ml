@@ -12,6 +12,8 @@ respectivement : 0 | 1      |        2     |   3    |   4      *)
 type score = int array;; (*score.(k) = score du joueur k*)
 
 let nb_s = 7;; (*on initialise 5 stratégies + 2 nouvelles*)
+let feat1 = 0;;
+let feat2 = 0;; (* pour l'étape 4 on initialise le match sans modifications*)
 
 (*============================================== PARAMÈTRAGE DES FONCTIONS DE TRANSFERT ===============================================================*)
 
