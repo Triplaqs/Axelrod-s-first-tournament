@@ -105,7 +105,23 @@ Sans rentrer dans les détails des coups, j'ai voulu inspecter les 14 premiers c
 
 On rectifie donc ces erreurs puis on resonde les 14 premiers coups des 4 tournois qui couvrent nos 5 stratégies/joueurs :
 
-*3 photos*
+
+![Étude des coups entre ALL_D et RANDOM](./imgs/ec_joss_tft.png)
+
+On montre ici la fonctionnalité de ```ALL_D``` (assez facile) et celle ```RANDOM``` qui varie qu'importe les coups d'en face.
+
+
+![Étude des coups entre RANDOM et TIT_FOR_THAT](./imgs/ec_rand_tft.png)
+
+
+Grâce à notre ```RANDOM``` montré fonctionnel précédemment, on montre ici notre ```TIT_FOR_THAT``` fonctionnel : il se calque sur le ```RANDOM```.
+
+
+![Étude des coups entre JOSS et TIT_FOR_THAT](./imgs/ec_joss_tft.png)
+
+
+![Étude des coups entre TESTER et TIT_FOR_THAT](./imgs/ec_tester_tft.png)
+
 
 Désormais nos 5 stratégies semblent correctent, on décide de ré(analyser les résultats :
 
