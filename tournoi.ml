@@ -3,8 +3,6 @@ open Sys;;
 open Printf;;
 open Array;;
 
-
-
 (*============================================== PLATEAU TOURNOI ===================================================================*)
 
 type coup = C | D;;
@@ -15,12 +13,38 @@ type score = int array;; (*score.(k) = score du joueur k*)
 
 let nb_s = 5;; (*on initialise 5 stratégies*)
 
-(*============================================== PARAMÈTRAGE DES COUPS ===============================================================*)
+(*============================================== PARAMÈTRAGE DES FONCTIONS DE TRANSFERT ===============================================================*)
+
+
+(*renvoie l'id associé à chaque strat*)
+let strat_to_int (j:strat) :int = 
+  match j with
+    ALL_D -> 0 | RANDOM -> 1 | TIT_FOR_TAT -> 2 | TESTER -> 3 | JOSS -> 4 | CHILD -> 5 | UNDECIDED -> 6;;
+
+(*et inversement*)
+let int_to_strat (i:int) :strat = 
+  match i with
+    0 -> ALL_D | 1 -> RANDOM | 2 -> TIT_FOR_TAT | 3 -> TESTER | 4 -> JOSS | 5 -> CHILD | 6 -> UNDECIDED | _ -> failwith "input insensé";;
+
+(*renvoie un string de chaque strat*)
+let strat_to_string (j:strat) :string = 
+  match j with
+    ALL_D -> "ALL_D" | RANDOM -> "RANDOM" | TIT_FOR_TAT -> "TIT_FOR_TAT" | TESTER -> "TESTER" | JOSS -> "JOSS" | CHILD -> "CHILD" | UNDECIDED -> "UNDECIDED";;
+
 
 (*prend un int et renvoie un coup*)
 let int_to_coup (i:int) :coup =
   match i with 
   | 0 -> C | 1 -> D | _ -> failwith "input insensé";;
+
+
+(*Charte des scores selon les coups donnés par les joueurs*)
+let tuple_score (res:coup * coup) :int*int =
+  match res with 
+    (C, C) -> (3, 3) | (C, D) -> (0, 5)| (D, C) -> (5, 0) | (D, D) -> (2, 2);;
+
+(*============================================== PARAMÈTRAGE DES COUPS ===============================================================*)
+
 
 (*AGENT RANDOM*)
 let coup_random () :coup =
@@ -88,14 +112,23 @@ let coup_child (p:plateau) (i:int) (cpt: int ref) : coup =
 
 
 (*AGENT UNDECIDED*)
-let coup_undecided (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup = 
-  Random.self_init ();
-  let r_strat = Random.int 7 in 
-  let r_nbcoup = Random.int 20 in
-  C;;
+let rec coup_undecided (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) (und_cpt:int ref) (und_strat:int ref):coup = 
+  match  !und_cpt with
+  | -1 -> (
+      Random.self_init ();
+      und_strat := Random.int 6;
+      und_cpt := Random.int 20;
+      joue_coup p (int_to_strat (!und_strat)) i cpt tester_state und_cpt und_strat);
+  | i -> und_cpt := (i-1); joue_coup p (int_to_strat (!und_strat)) i cpt tester_state und_cpt und_strat
+
+
+  
+(*^ Mutuelles récursives v*)
+
+
 
 (*i:int renvoie ici si le joueur est le premier indice du tableau des scores ou non et cpt indique le coup joué sur 200*)
-let joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref):coup =
+and joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref) (und_cpt:int ref) (und_strat:int ref) :coup =
     match j with
       | ALL_D -> D 
       | RANDOM -> coup_random ()
@@ -103,36 +136,16 @@ let joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref)
       | TESTER -> coup_tester p i cpt tester_state
       | JOSS -> coup_joss p i cpt
       | CHILD -> coup_child p i cpt
-      | UNDECIDED -> coup_undecided p i cpt tester_state
-  ;;
-
-(*Charte des scores selon les coups donnés par les joueurs*)
-let tuple_score (res:coup * coup) :int*int =
-  match res with 
-    (C, C) -> (3, 3) | (C, D) -> (0, 5)| (D, C) -> (5, 0) | (D, D) -> (2, 2);;
+      | UNDECIDED -> coup_undecided p i cpt tester_state und_cpt und_strat
+    ;;
 
 
 
 (*========================================== DÉROULEMENT TOURNOI & PARTIES =======================================================*)
 
 
-(*renvoie l'id associé à chaque strat*)
-let strat_to_int (j:strat) :int = 
-  match j with
-    ALL_D -> 0 | RANDOM -> 1 | TIT_FOR_TAT -> 2 | TESTER -> 3 | JOSS -> 4 | CHILD -> 5 | UNDECIDED -> 6;;
-
-(*et inversement*)
-let int_to_strat (i:int) :strat = 
-  match i with
-    0 -> ALL_D | 1 -> RANDOM | 2 -> TIT_FOR_TAT | 3 -> TESTER | 4 -> JOSS | 5 -> CHILD | 6 -> UNDECIDED | _ -> failwith "input insensé";;
-
-(*renvoie un string de chaque strat*)
-let strat_to_string (j:strat) :string = 
-  match j with
-    ALL_D -> "ALL_D" | RANDOM -> "RANDOM" | TIT_FOR_TAT -> "TIT_FOR_TAT" | TESTER -> "TESTER" | JOSS -> "JOSS" | CHILD -> "CHILD" | UNDECIDED -> "UNDECIDED";;
-
 (*Fonction qui régit le déroulement d'une manche entre 2 joueurs*)
-let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref) (cpt:int ref) (tester_state:int ref):unit = 
+let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref) (cpt:int ref) (tester_state:int ref) (und_cpt:int ref) (und_strat:int ref) :unit = 
     (*score.(strat_to_int j1) <- score.score.(strat_to_int j1);*)
     if !cpt >= 200 then (
         print_string ("\nscores : \n" ^ (strat_to_string j1) ^ " : "); print_int !s1;
@@ -147,8 +160,8 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
           )
         ) 
     ) else(  
-      let coup_J1 = joue_coup p j1 0 cpt tester_state in
-      let coup_J2 = joue_coup p j2 1 cpt tester_state in
+      let coup_J1 = joue_coup p j1 0 cpt tester_state und_cpt und_strat in
+      let coup_J2 = joue_coup p j2 1 cpt tester_state und_cpt und_strat in
       (*TEST*)
       if (!cpt <=14) then (
         print_string ("coup J1 ("^(strat_to_string j1)^") : "^(coup_to_string coup_J1)^"\n");
@@ -175,35 +188,64 @@ let debut_partie (s:score) (j1:strat) (j2:strat) :unit =
     let sc2 = ref 0 in 
     let cpt= ref 0 in
     let test_st = ref (-1) in
+    let undecided_cpt = ref (-1) in
+    let undecided_strat = ref 0 in
     let p = Array.make 400 C in
     while !cpt <= 200 do 
-      partie p s j1 j2 sc1 sc2 cpt test_st;
+      partie p s j1 j2 sc1 sc2 cpt test_st undecided_cpt undecided_strat;
       cpt:= !cpt + 1
     done; 
     s.(strat_to_int j1)<- s.(strat_to_int j1) + !sc1;
     s.(strat_to_int j2)<- s.(strat_to_int j2) + !sc2;;
 
+
+(*========================================== LANCEMENT & GESTION UTILISATEUR =======================================================*)
+
+
 (*Lancement du tournoi qui va contenir toutes les parties entre chaque joueur*)
 let tournoi () :unit = 
-  let sco = Array.make nb_s 0 in (*on énumère tous les affrontements car le dénombrement est trop spécifique à généraliser*)
-  (*avec ALL_D*)
-  debut_partie sco ALL_D RANDOM;        (*affiche_score sco;*)
-  debut_partie sco ALL_D TIT_FOR_TAT;   
-  debut_partie sco ALL_D TESTER;        
-  debut_partie sco ALL_D JOSS;          
-  (*avec RANDOM*)                       
-  debut_partie sco RANDOM TIT_FOR_TAT;  
-  debut_partie sco RANDOM TESTER;       
-  debut_partie sco RANDOM JOSS;         
-  (*Avec TIT_FOR_TAT*)                  
-  debut_partie sco TIT_FOR_TAT TESTER;  
-  debut_partie sco TIT_FOR_TAT JOSS;    
-  (*avec TESTER*)                       
-  debut_partie sco TESTER JOSS;         
+    let sco = Array.make nb_s 0 in (*on énumère tous les affrontements car le dénombrement est trop spécifique à généraliser*)
+    (*avec ALL_D*)
+    debut_partie sco ALL_D RANDOM;        (*affiche_score sco;*)
+    debut_partie sco ALL_D TIT_FOR_TAT;   
+    debut_partie sco ALL_D TESTER;        
+    debut_partie sco ALL_D JOSS;          
+    (*avec RANDOM*)                       
+    debut_partie sco RANDOM TIT_FOR_TAT;  
+    debut_partie sco RANDOM TESTER;       
+    debut_partie sco RANDOM JOSS;         
+    (*Avec TIT_FOR_TAT*)                  
+    debut_partie sco TIT_FOR_TAT TESTER;  
+    debut_partie sco TIT_FOR_TAT JOSS;    
+    (*avec TESTER*)                       
+    debut_partie sco TESTER JOSS;         
+    print_string "\n\nRÉSULTATS :\n";
+    for i=0 to 4 do
+      print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
+    done;;
+
+let rec tournoi_perso () :unit = 
+  print_string "Quelle stratégie voulez comme Joueur 1 ? Entrez le nombre adapté :\nALL_D       : 0\nRANDOM      : 1\nTIT_FOR_TAT : 2\nTESTER      : 3\nJOSS        : 4\nCHILD       : 5\nUNDECIDED   : 6\n";
+  let rj1 = read_int () in
+  print_string "Quelle stratégie voulez comme Joueur 2 ? Entrez le nombre adapté :\nALL_D       : 0\nRANDOM      : 1\nTIT_FOR_TAT : 2\nTESTER      : 3\nJOSS        : 4\nCHILD       : 5\nUNDECIDED   : 6\n";
+  let rj2 = read_int () in
+  print_string "\n... échange en cours...\n\n";
+  let sco = Array.make nb_s 0 in
+  debut_partie sco (int_to_strat rj1) (int_to_strat rj2);
   print_string "\n\nRÉSULTATS :\n";
-  for i=0 to 4 do
-    print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
-  done;;
+    for i=0 to 4 do
+      print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
+    done;;
 
 
-  tournoi ();;
+let rec main () :unit = 
+  print_string "Que voulez vous faire ? Entrez le nombre adapté :\nJouer un échange particulier entre 2 joueurs/stratégies (1)\nJouer tout le tournoi (2)\n";
+  let r = read_int () in
+  match r with
+  | 1 -> tournoi_perso ()
+  | 2 -> tournoi()
+  | _ -> print_string "numéro inconnu : réessayez\n"; main ();; 
+
+
+
+main ();;
