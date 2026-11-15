@@ -199,6 +199,15 @@ Concernant les prévisions, l'agent ```CHILD``` me semble être une bonne porpos
 
 Quant à ```UNDECIDED``` c'est une proposition chaotique sans grande prétention, qui arrivera sans doute à se hisser malgré tout devant ```RANDOM``` car il y a des portions de sens dans ses coups. Voir même au dessus des stratégies les moins bonnes.
 
+On en profite pour dévélopper une interface utilisateur dans le terminal, voici le code :
+
+
+![Code d'affichage de l'interface](./imgs/code_affich.png)
+
+Elle nous permet de selectionner un seul échange entre deux stratégies, on choisit d'essayer nos deux nouvelles :
+
+
+
 ### Nouvelles règles : présentations et prévisions
 
 
