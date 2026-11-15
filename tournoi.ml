@@ -160,19 +160,24 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
           )
         ) 
     ) else(  
-      let coup_J1 = joue_coup p j1 0 cpt tester_state und_cpt und_strat in
-      let coup_J2 = joue_coup p j2 1 cpt tester_state und_cpt und_strat in (**)
+      let coup_J1 = ref (joue_coup p j1 0 cpt tester_state und_cpt und_strat) in
+      let coup_J2 = ref (joue_coup p j2 1 cpt tester_state und_cpt und_strat) in (**)
+
+      if !feat1 = 1 then (let ri = Random.int 100 in if (ri <=5) then coup_J1 := op_coup (!coup_J1));
+      if !feat1 = 1 then (let ri = Random.int 100 in if (ri <=5) then coup_J2 := op_coup (!coup_J2));
+
+      
       (*TEST
       if (!cpt <=14) then (
         print_string ("coup J1 ("^(strat_to_string j1)^") : "^(coup_to_string coup_J1)^"\n");
         print_string ("coup J2 ("^(strat_to_string j2)^") : "^(coup_to_string coup_J2)^"\n"););
       TEST*)
       
-      let coups = (coup_J1, coup_J2) in
+      let coups = (!coup_J1, !coup_J2) in
       let score_J1, score_J2 = tuple_score coups in 
       s1 := !s1 + score_J1; s2 := !s2 + score_J2;
 
-      p.(!cpt*2)<-coup_J1; p.(!cpt*2+1)<-coup_J2;
+      p.(!cpt*2)<-(!coup_J1); p.(!cpt*2+1)<-(!coup_J2);
     );;
   
 (*AFFICHAGE SCORE DEBUG*)      
