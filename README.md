@@ -138,11 +138,14 @@ Désormais nos 5 stratégies semblent correctent, on décide de ré(analyser les
 
 ![Résultats 3 - partie 2](./imgs/res3_v2.png)
 
-Concernant les résultats, avec l'étude assez grossière de la situation faites dans la rubrique ```Prévisions```, on comprend pourquoi ```ALL_D``` est premier (et largement) ; en effet, comme dit précedemment : si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
+Concernant les résultats, avec l'étude assez grossière de la situation faites dans la rubrique ```Prévisions```, on comprend pourquoi ```ALL_D``` est si bien placé ; en effet, comme dit précedemment : si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
 
 Dans les faits, si ```ALL_D``` joue avec lui même (ce qu'on a pas implémenté ici), il ferait $200 \times 2 = 400$ points lors de l'échange, et si (il existait) la stratégie ```ALL_C``` qui joue uniquement C, et que cette dernière jouait avec elle même, elle aurait $200 \times 3 = 6OO$ points lors de l'échange, soit 1.5 fois le score de ```ALL_D``` dans son tournoi contre lui même. Sauf que dans notre tournoi à nous, toutes les stratégies affrontent toutes les autres. Donc ```ALL_D``` devrait affronter ```ALL_C``` et là on aurait 1000 points pour ```ALL_D``` et 0 pour ```ALL_C``` transformant l'issu du tournoi de 400 à 600 en 1400 à toujours 600.
 
 Malheureusement les règles du jeu vont favoriser la trahison quand celui en face essayent de coopérer. 
+
+Néanmoins dans le contexte présent, on n'a en effet pas 50% de chance que le joueur en face joue D, c'est un modèle qui atteint ses limites dans les faits, comme on l'a vu, on a plus intérêt de jouer D, c'est donc majoritairement des D face auxquels on risque de se fritter si on joue. En reprenant la reflexion de tout à l'heure : si on joue D on a soit 2 soit 5, et si on joue C on a entre 0 et 3. Alors si on développe un modèle plus hybride qui arrive à avoir les 5 points du D quand l'adversaire baisse sa garde, mais aussi jouer C pour qu'il puisse justement plus facilement la baisser. donc accepter d'avoir des 3 points pour essayer d'avoir plus tard des 5 à la place des 2.
+
 
 *stats*
 
