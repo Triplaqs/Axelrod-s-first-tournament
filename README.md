@@ -210,7 +210,7 @@ Elle nous permet de selectionner un seul échange entre deux stratégies, on cho
 ![Résultat des 2 stratégies - partie 2](./imgs/res_oob2.png)
 
 Cet échange créait une erreur : ```Fatal error: exception Invalid_argument("index out of bounds")``` : on utilise le débuggueur OCaml pour identifier cette erreur (```ocamldebug ./out/lancer```).
-On essaye avec les autres stratégies et on isole que le problème vient des nouvelles stratégies.
+On essaye avec les autres stratégies et on isole que le problème vient des nouvelles stratégies (en les essayant avec elles-mêmes, les 2 posent problème).
 
 ![Remontée de la pile d'appel](./imgs/debug.png)
 
