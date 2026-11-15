@@ -258,4 +258,6 @@ Mes prédictions sur le comportement de l'addition de ```CHILD``` et ```UNDECIDE
 
 ### Nouvelles règles : présentations et prévisions
 
+On choisit d'implémenter ```Bruit``` et ```Horizon Inconnu```.
+
 
