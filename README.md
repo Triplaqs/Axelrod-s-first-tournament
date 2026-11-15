@@ -276,4 +276,15 @@ On a implémenté ```Bruit``` :
 
 Il nous reste ```Horizon Nouveau``` qu'on aurait implémenté de la même manière mais par manque de temps nous n'avons pu.
 
+Sinon en continuiant le projet en dehors du temps imparti, voici les résultats d'un tournoi avec les 7 stratégies et la fonction ```Bruit``` :
+
+
+![Résultats tournoi avec bruit](./imgs/res_bruit1.png)
+
+
+![Résultats tournoi avec bruit 2](./imgs/res_bruit2.png)
+
+
+![Résultats tournoi avec bruit 3](./imgs/res_bruit3.png)
+
 
