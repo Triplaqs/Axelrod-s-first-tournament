@@ -117,7 +117,7 @@ let rec coup_undecided (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) 
       und_strat := Random.int 6;
       und_cpt := Random.int 20;
       joue_coup p (int_to_strat (!und_strat)) i cpt tester_state und_cpt und_strat);
-  | i -> und_cpt := (i-1); joue_coup p (int_to_strat (!und_strat)) i cpt tester_state und_cpt und_strat
+  | k -> und_cpt := (k-1); joue_coup p (int_to_strat (!und_strat)) i cpt tester_state und_cpt und_strat
 
 
   
@@ -160,11 +160,11 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
     ) else(  
       let coup_J1 = joue_coup p j1 0 cpt tester_state und_cpt und_strat in
       let coup_J2 = joue_coup p j2 1 cpt tester_state und_cpt und_strat in (**)
-      (*TEST*)
+      (*TEST
       if (!cpt <=14) then (
         print_string ("coup J1 ("^(strat_to_string j1)^") : "^(coup_to_string coup_J1)^"\n");
         print_string ("coup J2 ("^(strat_to_string j2)^") : "^(coup_to_string coup_J2)^"\n"););
-      (*TEST*)
+      TEST*)
       
       let coups = (coup_J1, coup_J2) in
       let score_J1, score_J2 = tuple_score coups in 
@@ -188,7 +188,7 @@ let debut_partie (s:score) (j1:strat) (j2:strat) :unit =
     let test_st = ref (-1) in
     let undecided_cpt = ref (-1) in
     let undecided_strat = ref 0 in
-    let p = Array.make 400 C in
+    let p = Array.make 400 C in (**)
     while !cpt <= 200 do 
       partie p s j1 j2 sc1 sc2 cpt test_st undecided_cpt undecided_strat;
       cpt:= !cpt + 1
