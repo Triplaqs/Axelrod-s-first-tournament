@@ -100,4 +100,6 @@ Malheureusement les règles du jeu vont favoriser trahir quand celuien face essa
 
 ### Nouvelles stratégies
 
+### Nouvelles règles
+
 
