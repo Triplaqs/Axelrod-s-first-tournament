@@ -189,11 +189,11 @@ Les 2 nouvelles stratégies proposées dans ce projet sont les suivantes :
 
 ```CHILD``` : enfant irréfléchi et insoucieux, va choisir son premier coup sans se soucier de sa pertinence et fera l'inverse de son adversaire tout le reste de la partie par esprit de contradiction.
 
-L'agent  ```CHILD``` va générer
+L'agent  ```CHILD``` va générer un premier coup au hasard comme ```RANDOM``` (on fera d'ailleurs appel à sa fonction), puis jouera l'inverse du coup précédent de son adversaire.
 
 ```UNDECIDED``` : Un joueur indécis, qui change de stratégie intempestivement tout au long de la partie.
 
-L'agent ```UNDECIDED``` qui va générer un nombre de coup (entre 1 et 20) au hasard et une stratégie parmis les précédentes (dont ```CHILD```) en l'appliquant pendant le nombre de coups obtenus juste avant.
+L'agent ```UNDECIDED``` qui va générer un nombre de coup (entre 1 et 20) au hasard et une stratégie parmis les précédentes (dont ```CHILD```) en l'appliquant pendant le nombre de coups obtenus juste avant. On crééra une variable pour tenir le compte de suivi des coups.
 
 Concernant les prévisions, l'agent ```CHILD``` me semble être une bonne porposition, sans compter le premier coup aléatoire (qui est néglogeable sur 200 coups) il va appliquer ```TIT_FOR_TAT``` en inversant la réponse, ce qui pourrait contre-intuitivement peut être permettre d'anticiper des changements de décision de l'adversaire.
 
