@@ -8,6 +8,11 @@ Then enter the numbers according to what tournament you want to run. All the inf
 If you want to see the list of playable agents, here it is :
 
 ```
+SINGLE MATCH     : 1
+WHOLE TOURNAMENT : 2
+```
+
+```
 ALL_D       : 0
 RANDOM      : 1 
 TIT_FOR_TAT : 2
