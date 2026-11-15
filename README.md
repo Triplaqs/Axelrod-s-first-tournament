@@ -143,9 +143,9 @@ On a donc majoritairement :
 ```
 1er  : TIT_FOR_TAT
 2ème : ALL_D
-3ème :
-4ème :
-5ème :
+3ème : JOSS
+4ème : TESTER
+5ème : RANDOM
 ```
 
 Concernant les résultats, avec l'étude assez grossière de la situation faites dans la rubrique ```Prévisions```, on comprend pourquoi ```ALL_D``` est si bien placé ; en effet, comme dit précedemment : si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
