@@ -11,7 +11,7 @@ type strat = ALL_D | RANDOM | TIT_FOR_TAT | TESTER | JOSS | UNDECIDED | CHILD;; 
 respectivement : 0 | 1      |        2     |   3    |   4      *)
 type score = int array;; (*score.(k) = score du joueur k*)
 
-let nb_s = 5;; (*on initialise 5 stratégies*)
+let nb_s = 7;; (*on initialise 5 stratégies + 2 nouvelles*)
 
 (*============================================== PARAMÈTRAGE DES FONCTIONS DE TRANSFERT ===============================================================*)
 
@@ -48,7 +48,6 @@ let tuple_score (res:coup * coup) :int*int =
 
 (*AGENT RANDOM*)
 let coup_random () :coup =
-  Random.self_init ();
   let i = Random.int 2 in 
   int_to_coup i;;
 
@@ -115,7 +114,6 @@ let coup_child (p:plateau) (i:int) (cpt: int ref) : coup =
 let rec coup_undecided (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) (und_cpt:int ref) (und_strat:int ref):coup = 
   match  !und_cpt with
   | -1 -> (
-      Random.self_init ();
       und_strat := Random.int 6;
       und_cpt := Random.int 20;
       joue_coup p (int_to_strat (!und_strat)) i cpt tester_state und_cpt und_strat);
@@ -161,7 +159,7 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
         ) 
     ) else(  
       let coup_J1 = joue_coup p j1 0 cpt tester_state und_cpt und_strat in
-      let coup_J2 = joue_coup p j2 1 cpt tester_state und_cpt und_strat in
+      let coup_J2 = joue_coup p j2 1 cpt tester_state und_cpt und_strat in (**)
       (*TEST*)
       if (!cpt <=14) then (
         print_string ("coup J1 ("^(strat_to_string j1)^") : "^(coup_to_string coup_J1)^"\n");
@@ -209,18 +207,32 @@ let tournoi () :unit =
     debut_partie sco ALL_D RANDOM;        (*affiche_score sco;*)
     debut_partie sco ALL_D TIT_FOR_TAT;   
     debut_partie sco ALL_D TESTER;        
-    debut_partie sco ALL_D JOSS;          
+    debut_partie sco ALL_D JOSS;        
+    debut_partie sco ALL_D CHILD;        
+    debut_partie sco ALL_D UNDECIDED;          
     (*avec RANDOM*)                       
     debut_partie sco RANDOM TIT_FOR_TAT;  
     debut_partie sco RANDOM TESTER;       
-    debut_partie sco RANDOM JOSS;         
+    debut_partie sco RANDOM JOSS;  
+    debut_partie sco RANDOM CHILD; 
+    debut_partie sco RANDOM UNDECIDED;         
     (*Avec TIT_FOR_TAT*)                  
     debut_partie sco TIT_FOR_TAT TESTER;  
     debut_partie sco TIT_FOR_TAT JOSS;    
+    debut_partie sco TIT_FOR_TAT CHILD; 
+    debut_partie sco TIT_FOR_TAT UNDECIDED;  
     (*avec TESTER*)                       
-    debut_partie sco TESTER JOSS;         
+    debut_partie sco TESTER JOSS;    
+    debut_partie sco TESTER CHILD; 
+    debut_partie sco TESTER UNDECIDED;
+    (*avec JOSS*)
+    debut_partie sco JOSS CHILD; 
+    debut_partie sco JOSS UNDECIDED;
+    (*avec CHILD*)             
+    debut_partie sco CHILD UNDECIDED;
+
     print_string "\n\nRÉSULTATS :\n";
-    for i=0 to 4 do
+    for i=0 to nb_s -1 do
       print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
     done;;
 
@@ -233,7 +245,7 @@ let rec tournoi_perso () :unit =
   let sco = Array.make nb_s 0 in
   debut_partie sco (int_to_strat rj1) (int_to_strat rj2);
   print_string "\n\nRÉSULTATS :\n";
-    for i=0 to 4 do
+    for i=0 to nb_s - 1 do
       print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
     done;;
 
@@ -248,4 +260,5 @@ let rec main () :unit =
 
 
 
+Random.self_init ();
 main ();;
