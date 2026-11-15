@@ -84,7 +84,7 @@ Implémentation des coups :
 On a du rajouter la variable ```tester_state``` en paramètre dans les appels de fonciton en cascade afin de retenir l'état de la séquence CCD de la stratégie.
 
 
-### Résultats, tests et cohérence
+### Résultats & tests 
 
 Voici 3 résultats obtenus à 3 lancers de programme différents ! Ils diffèrent à cause de la stratégie random, grossièrement le classement reste le même.
 
@@ -147,6 +147,8 @@ On a donc majoritairement :
 4ème : TESTER
 5ème : RANDOM
 ```
+
+### Analyse et cohérence
 
 Concernant les résultats, avec l'étude assez grossière de la situation faites dans la rubrique ```Prévisions```, on comprend pourquoi ```ALL_D``` est si bien placé ; en effet, comme dit précedemment : si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
 
