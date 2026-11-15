@@ -119,6 +119,8 @@ Grâce à notre ```RANDOM``` montré fonctionnel précédemment, on montre ici n
 
 ![Étude des coups entre JOSS et TIT_FOR_THAT](./imgs/ec_joss_tft.png)
 
+Ici on montre la fonctionnalité de ```JOSS``` avec en face ```TIT_FOR_THAT``` ; on voit que les 2 commencent avec leurs coups respectifs (différents) et qu'ils vont passer la partie à changer de coup en copiant celui d'en face au tour précédent, ils ont donc une égalité parfaite (j'ai oublié de capturer les scores sur celle-ci).
+
 
 ![Étude des coups entre TESTER et TIT_FOR_THAT](./imgs/ec_tester_tft.png)
 
