@@ -260,4 +260,6 @@ Mes prédictions sur le comportement de l'addition de ```CHILD``` et ```UNDECIDE
 
 On choisit d'implémenter ```Bruit``` et ```Horizon Inconnu```.
 
+On ajoute donc deux variables (booléennes ou entières à voir selon les contraintes d'implémentations) qui vont servir pour savoir les quelles sont appliquées ou non et comment.
+
 
