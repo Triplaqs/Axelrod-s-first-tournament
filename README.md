@@ -274,6 +274,6 @@ On a implémenté ```Bruit``` :
 
 ![Code de bruit](./imgs/bruit.png)
 
-Il nous reste Horizon Nouveau qu'on aurait implémenté de la même manière mais par manque de temps nous n'avons pu.
+Il nous reste ```Horizon Nouveau``` qu'on aurait implémenté de la même manière mais par manque de temps nous n'avons pu.
 
 
