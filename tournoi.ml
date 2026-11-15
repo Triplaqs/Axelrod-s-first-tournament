@@ -8,7 +8,7 @@ open Array;;
 (*============================================== PLATEAU TOURNOI ===================================================================*)
 
 type coup = C | D;;
-type plateau = coup array;; (*on implémentera par soucis de simplicité tab[2*k] = score J1 et tab[2*k+1 + 1] = score J2*)
+type plateau = coup array;; (*on implémentera par soucis de simplicité tab[2*k] = score J1 et tab[2*k + 1] = score J2*)
 type strat = ALL_D | RANDOM | TIT_FOR_TAT | TESTER | JOSS;; (*arbitrairement on définira dans cet ordre leurs indices ; 
 respectivement : 0 | 1      |        2     |   3    |   4      *)
 type score = int array;; (*score.(k) = score du joueur k*)
@@ -38,12 +38,12 @@ let coup_TFT (p:plateau) (i:int) (cpt:int ref) :coup =
 (*tester_state vaut -1 si la séquence CCD n'est pas lancée, et 0, 1 ou 2 sinon selon la position*)
 let coup_tester (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup = 
   if !cpt = 0 then D else (
-    if p.(2*(!cpt -1) + (1-i)) = D then (coup_TFT p i cpt) else (
+    if p.(2*(!cpt -1) + (1-i)) = C then (coup_TFT p i cpt) else (
       match !tester_state with
       | -1 -> tester_state := 0; C 
       | 0 -> tester_state := 1; C
-      | 1 -> tester_state :=2; D
-      | 2 -> tester_state := -1; coup_TFT p i cpt
+      | 1 -> tester_state :=-1; D
+      (*| 2 -> tester_state := -1; coup_TFT p i cpt*)
       | _ -> failwith "input insensé";
     ) 
   );;
@@ -61,7 +61,7 @@ let coup_to_string (c:coup) :string =
 (*AGENT JOSS*)
 let coup_joss (p:plateau) (i:int) (cpt:int ref) :coup = 
   let cj = coup_TFT p i cpt in
-  if ((!cpt+1) mod 10) = 0 then op_coup cj else cj;;
+  if (!cpt mod 10) = 0 then D else cj;;
 
 (*i:int renvoie ici si le joueur est le premier indice du tableau des scores ou non et cpt indique le coup joué sur 200*)
 let joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref):coup =
@@ -114,11 +114,11 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
     ) else(  
       let coup_J1 = joue_coup p j1 0 cpt tester_state in
       let coup_J2 = joue_coup p j2 1 cpt tester_state in
-      (*TEST
-      if (!cpt mod 33)=0 then (
-        print_string ("coup J1 : "^(coup_to_string coup_J1)^"\n");
-        print_string ("coup J2 : "^(coup_to_string coup_J2)^"\n"););
-      TEST*)
+      (*TEST*)
+      if (!cpt <=14) then (
+        print_string ("coup J1 ("^(strat_to_string j1)^") : "^(coup_to_string coup_J1)^"\n");
+        print_string ("coup J2 ("^(strat_to_string j2)^") : "^(coup_to_string coup_J2)^"\n"););
+      (*TEST*)
       
       let coups = (coup_J1, coup_J2) in
       let score_J1, score_J2 = tuple_score coups in 
