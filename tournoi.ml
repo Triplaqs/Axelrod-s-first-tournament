@@ -12,8 +12,8 @@ respectivement : 0 | 1      |        2     |   3    |   4      *)
 type score = int array;; (*score.(k) = score du joueur k*)
 
 let nb_s = 7;; (*on initialise 5 stratégies + 2 nouvelles*)
-let feat1 = 0;;
-let feat2 = 0;; (* pour l'étape 4 on initialise le match sans modifications*)
+let feat1 = ref 0;;
+let feat2 = ref 0;; (* pour l'étape 4 on initialise le match sans modifications*)
 
 (*============================================== PARAMÈTRAGE DES FONCTIONS DE TRANSFERT ===============================================================*)
 
@@ -202,6 +202,7 @@ let debut_partie (s:score) (j1:strat) (j2:strat) :unit =
 (*========================================== LANCEMENT & GESTION UTILISATEUR =======================================================*)
 
 
+
 (*Lancement du tournoi qui va contenir toutes les parties entre chaque joueur*)
 let tournoi () :unit = 
     let sco = Array.make nb_s 0 in (*on énumère tous les affrontements car le dénombrement est trop spécifique à généraliser*)
@@ -238,6 +239,14 @@ let tournoi () :unit =
       print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
     done;;
 
+(*interface de choix des modifications de l'étape 4*)
+let feats () :unit = 
+  print_string "Voulez-vous activer la fonction Bruit ? Entrez 0 pour non et 1 pour oui\n";
+  feat1 := read_int ();
+  print_string "Voulez-vous activer la fonction Horizon Inconnu ? Entrez 0 pour non et 1 pour oui\n";
+  feat2 := read_int ();
+  tournoi ();;
+
 let rec tournoi_perso () :unit = 
   print_string "Quelle stratégie voulez comme Joueur 1 ? Entrez le nombre adapté :\nALL_D       : 0\nRANDOM      : 1\nTIT_FOR_TAT : 2\nTESTER      : 3\nJOSS        : 4\nCHILD       : 5\nUNDECIDED   : 6\n";
   let rj1 = read_int () in
@@ -257,7 +266,7 @@ let rec main () :unit =
   let r = read_int () in
   match r with
   | 1 -> tournoi_perso ()
-  | 2 -> tournoi()
+  | 2 -> feats()
   | _ -> print_string "numéro inconnu : réessayez\n"; main ();; 
 
 
