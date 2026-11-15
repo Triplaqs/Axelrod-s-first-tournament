@@ -106,7 +106,7 @@ Sans rentrer dans les détails des coups, j'ai voulu inspecter les 14 premiers c
 On rectifie donc ces erreurs puis on resonde les 14 premiers coups des 4 tournois qui couvrent nos 5 stratégies/joueurs :
 
 
-![Étude des coups entre ALL_D et RANDOM](./imgs/ec_joss_tft.png)
+![Étude des coups entre ALL_D et RANDOM](./imgs/ec_alld_rand.png)
 
 On montre ici la fonctionnalité de ```ALL_D``` (assez facile) et celle ```RANDOM``` qui varie qu'importe les coups d'en face.
 
