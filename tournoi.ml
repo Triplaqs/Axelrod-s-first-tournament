@@ -36,7 +36,7 @@ let coup_TFT (p:plateau) (i:int) (cpt:int ref) :coup =
 
 (*AGENT TESTER*)
 (*tester_state vaut -1 si la séquence CCD n'est pas lancée, et 0, 1 ou 2 sinon selon la position*)
-let coup_tester (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup = 
+(*let coup_tester (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup = 
   if !cpt = 0 then D else (
     if p.(2*(!cpt -1) + (1-i)) = C then (coup_TFT p i cpt) else (
       match !tester_state with
@@ -46,6 +46,21 @@ let coup_tester (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup =
       (*| 2 -> tester_state := -1; coup_TFT p i cpt*)
       | _ -> failwith "input insensé";
     ) 
+  );;*)
+
+
+(*AGENT TESTER REMAKE*)
+(*tester_state vaut -1 si le premier tour n'est pas encore arrivé, 0 si on part sur TFT et 1, 2, 3 si on enchaine les CCD*)
+
+let rec coup_tester (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup = 
+  if !cpt = 0 then D else (
+    match !tester_state with
+    | -1 -> (match p.(1 - i) with | D -> tester_state :=0 | C -> tester_state :=1); coup_tester p i cpt tester_state
+    | 0 -> coup_TFT p i cpt
+    | 1 -> tester_state := 2; C 
+    | 2 -> tester_state := 3; C 
+    | 3 -> tester_state := 1; D
+    | _ -> failwith "input insensé"
   );;
 
 (*renvoie le coup opposé*)
