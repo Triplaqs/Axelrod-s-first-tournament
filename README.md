@@ -183,10 +183,22 @@ Néanmoins dans le contexte présent, on n'a en effet pas 50% de chance que le j
 
 Notre première position est donc, à l'instar du tournoi
 
-### Nouvelles stratégies
+### Nouvelles stratégies : présentations et prévisions
 
+Les 2 nouvelles stratégies proposées dans ce projet sont les suivantes :
 
+```CHILD``` : enfant irréfléchi et insoucieux, va choisir son premier coup sans se soucier de sa pertinence et fera l'inverse de son adversaire tout le reste de la partie par esprit de contradiction.
 
-### Nouvelles règles
+L'agent  ```CHILD``` va générer
+
+```UNDECIDED``` : Un joueur indécis, qui change de stratégie intempestivement tout au long de la partie.
+
+L'agent ```UNDECIDED``` qui va générer un nombre de coup (entre 1 et 20) au hasard et une stratégie parmis les précédentes (dont ```CHILD```) en l'appliquant pendant le nombre de coups obtenus juste avant.
+
+Concernant les prévisions, l'agent ```CHILD``` me semble être une bonne porposition, sans compter le premier coup aléatoire (qui est néglogeable sur 200 coups) il va appliquer ```TIT_FOR_TAT``` en inversant la réponse, ce qui pourrait contre-intuitivement peut être permettre d'anticiper des changements de décision de l'adversaire.
+
+Quant à ```UNDECIDED``` c'est une proposition chaotique sans grande prétention, qui arrivera sans doute à se hisser malgré tout devant ```RANDOM``` car il y a des portions de sens dans ses coups. Voir même au dessus des stratégies les moins bonnes.
+
+### Nouvelles règles : présentations et prévisions
 
 
