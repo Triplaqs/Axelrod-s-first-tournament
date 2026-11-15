@@ -94,7 +94,7 @@ Concernant les résultats, avec l'étude assez grossière de la situation faites
 
 Dans les faits, si ```ALL_D``` joue avec lui même (ce qu'on a pas implémenté ici), il ferait $200 \times 2 = 400$ points lors de l'échange, et si (il existait) la stratégie ```ALL_C``` qui joue uniquement C, et que cette dernière jouait avec elle même, elle aurait $200 \times 3 = 6OO$ points lors de l'échange, soit 1.5 fois le score de ```ALL_D``` dans son tournoi contre lui même. Sauf que dans notre tournoi à nous, toutes les stratégies affrontent toutes les autres. Donc ```ALL_D``` devrait affronter ```ALL_C``` et là on aurait 1000 points pour ```ALL_D``` et 0 pour ```ALL_C``` transformant l'issu du tournoi de 400 à 600 en 1400 à toujours 600.
 
-Malheureusement les règles du jeu vont favoriser trahir quand celuien face essayent de coopérer. 
+Malheureusement les règles du jeu vont favoriser la trahison quand celui en face essayent de coopérer. 
 
 *stats*
 
