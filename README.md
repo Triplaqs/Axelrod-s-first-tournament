@@ -101,9 +101,9 @@ on regarde un échantillon du déroulé d'un tour d'un échange pour voir si on 
 
 ![Introspection d'un tour](./imgs/inspection_coups.png)
 
-Sans rentrer dans les détails des coups, j'ai voulu inspecter les 14 premiers coups dans 3 tournois représentatifs des 5 stratégies (= une stratégie apparait dans au moins l'un des 3 tournois). Et de cette manière j'ai réalisé que j'avais mal compris (et donc implémenté ```TESTER``` et ```JOSS```. Respectivement j'avais compris pour le premier qu'à chaque coup il devait regarder le coup précédent de l'autre et soit jouer comme ```TIT_FOR_THAT``` soit lancer une séquence de C,C,D et re-sonder juste après. Tandis que pour le deuxième j'avais compris qu'il devait immiter le coup précédent de son adversaire sauf une fois sur 10, dans quel cas il l'inversait (et non pas juste jouer D peu importe).
+Sans rentrer dans les détails des coups, j'ai voulu inspecter les 14 premiers coups dans 4 tournois représentatifs des 5 stratégies (= une stratégie apparait dans au moins l'un des 4 tournois). Et de cette manière j'ai réalisé que j'avais mal compris (et donc implémenté ```TESTER``` et ```JOSS```. Respectivement j'avais compris pour le premier qu'à chaque coup il devait regarder le coup précédent de l'autre et soit jouer comme ```TIT_FOR_THAT``` soit lancer une séquence de C,C,D et re-sonder juste après. Tandis que pour le deuxième j'avais compris qu'il devait immiter le coup précédent de son adversaire sauf une fois sur 10, dans quel cas il l'inversait (et non pas juste jouer D peu importe).
 
-On rectifie donc ces erreurs puis on resonde les 14 premiers coups des 3 tournois qui couvrent nos 5 stratégies/joueurs :
+On rectifie donc ces erreurs puis on resonde les 14 premiers coups des 4 tournois qui couvrent nos 5 stratégies/joueurs :
 
 *3 photos*
 
