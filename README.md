@@ -216,6 +216,10 @@ On essaye avec les autres stratégies et on isole que le problème vient des nou
 
 On isole grâce au debogage la ligne qui pose problème.
 
+Le problème (très bête) a été retrouvé, nous n'avions pas modifié cette variable globale :
+
+![Variable globale qui pose problème](./imgs/pb_debug.png)
+
 ### Nouvelles règles : présentations et prévisions
 
 
