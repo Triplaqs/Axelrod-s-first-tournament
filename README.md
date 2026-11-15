@@ -262,4 +262,12 @@ On choisit d'implémenter ```Bruit``` et ```Horizon Inconnu```.
 
 On ajoute donc deux variables (booléennes ou entières à voir selon les contraintes d'implémentations) qui vont servir pour savoir les quelles sont appliquées ou non et comment.
 
+On intercale une fonction interface utilisateur terminale entre le main et le lancer de tournoi pour le choix des features qui va placer les réponses dans des variables globales.
+
+
+![Variables globales de features](./imgs/feat12.png)
+
+
+![Code interface de features](./imgs/feats.png)
+
 
