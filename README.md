@@ -129,7 +129,14 @@ Ici on montre la fonctionnalité de ```JOSS``` avec en face ```TIT_FOR_THAT``` ;
 
 Désormais nos 5 stratégies semblent correctent, on décide de ré(analyser les résultats :
 
-*3 photos*
+
+![Résultats 1 - partie 2](./imgs/res1_v2.png)
+
+
+![Réslutats 2 - partie 2](./imgs/res2_v2.png)
+
+
+![Résultats 3 - partie 2](./imgs/res3_v2.png)
 
 Concernant les résultats, avec l'étude assez grossière de la situation faites dans la rubrique ```Prévisions```, on comprend pourquoi ```ALL_D``` est premier (et largement) ; en effet, comme dit précedemment : si l'on joue tout le temps D, on a au pire 2 points, au plus 5 points, on a donc en moyenne 3.5 points par tour. Tandis que si l'on joue systématiquement C, on a au pire 0 et au mieux 3, donc en moyenne 1.5 points par tour. On comprend alors l'hégémonie du D et donc du ```ALL_D```.
 
