@@ -287,4 +287,19 @@ Sinon en continuiant le projet en dehors du temps imparti, voici les résultats 
 
 ![Résultats tournoi avec bruit 3](./imgs/res_bruit3.png)
 
+On code ```Horizon Nouveau``` :
+
+
+![Détournement du compteur](./imgs/newH_code1.png)
+
+On prend le compteur de tours en hotage et on le fait aller dans les négatifs, pour qu'ils n'activent pas la condition du while et qu'on puisse malgré tout compter combien de tours on fait.
+
+
+![Nouvel arrêt stocastique](./imgs/newH_code2.png)
+
+On fait similairement à ```Bruit``` une selection probabiliste en proportion sur 100 afin d'arrêter la boucle.
+
+
+
+
 
