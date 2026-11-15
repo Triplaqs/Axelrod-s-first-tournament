@@ -206,6 +206,9 @@ On en profite pour dévélopper une interface utilisateur dans le terminal, voic
 
 Elle nous permet de selectionner un seul échange entre deux stratégies, on choisit d'essayer nos deux nouvelles :
 
+![Résultat des 2 stratégies - partie 1](./imgs/res_oob1.png)
+![Résultat des 2 stratégies - partie 2](./imgs/res_oob2.png)
+
 
 
 ### Nouvelles règles : présentations et prévisions
