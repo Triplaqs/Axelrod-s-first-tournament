@@ -270,4 +270,8 @@ On intercale une fonction interface utilisateur terminale entre le main et le la
 
 ![Code interface de features](./imgs/feats.png)
 
+On a implémenté ```Bruit``` : 
+
+![Code de bruit](./imgs/bruit.png)
+
 
