@@ -299,6 +299,9 @@ On prend le compteur de tours en hotage et on le fait aller dans les négatifs, 
 
 On fait similairement à ```Bruit``` une selection probabiliste en proportion sur 100 afin d'arrêter la boucle.
 
+Cela requiert malheureusement de transformer ```cpt``` en sa valeur absolue lors de tous les appels d'indice en tableau, mais c'est pas grave  nous le ferons.
+
+
 
 
 
