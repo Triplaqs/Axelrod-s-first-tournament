@@ -9,7 +9,7 @@ open Array;;
 
 type coup = C | D;;
 type plateau = coup array;; (*on implémentera par soucis de simplicité tab[2*k] = score J1 et tab[2*k + 1] = score J2*)
-type strat = ALL_D | RANDOM | TIT_FOR_TAT | TESTER | JOSS;; (*arbitrairement on définira dans cet ordre leurs indices ; 
+type strat = ALL_D | RANDOM | TIT_FOR_TAT | TESTER | JOSS | UNDECIDED | CHILD;; (*arbitrairement on définira dans cet ordre leurs indices ; 
 respectivement : 0 | 1      |        2     |   3    |   4      *)
 type score = int array;; (*score.(k) = score du joueur k*)
 
@@ -78,6 +78,22 @@ let coup_joss (p:plateau) (i:int) (cpt:int ref) :coup =
   let cj = coup_TFT p i cpt in
   if (!cpt mod 10) = 0 then D else cj;;
 
+(*NOUVEAUX AGENTS*)
+
+(*AGENT CHILD*)
+let coup_child (p:plateau) (i:int) (cpt: int ref) : coup =
+  if !cpt = 0 then coup_random () else (
+    op_coup (p.(2*(!cpt -1) + (1-i)))  (*joue le coup opposé du précédent de son adversaire*)
+  );;
+
+
+(*AGENT UNDECIDED*)
+let coup_undecided (p:plateau) (i:int) (cpt:int ref) (tester_state:int ref) :coup = 
+  Random.self_init ();
+  let r_strat = Random.int 7 in 
+  let r_nbcoup = Random.int 20 in
+  C;;
+
 (*i:int renvoie ici si le joueur est le premier indice du tableau des scores ou non et cpt indique le coup joué sur 200*)
 let joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref):coup =
     match j with
@@ -85,7 +101,9 @@ let joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref)
       | RANDOM -> coup_random ()
       | TIT_FOR_TAT -> coup_TFT p i cpt
       | TESTER -> coup_tester p i cpt tester_state
-      | JOSS -> coup_joss p i cpt;;
+      | JOSS -> coup_joss p i cpt
+      | CHILD -> coup_child p i cpt
+      | UNDECIDED -> coup_undecided p i cpt tester_state
   ;;
 
 (*Charte des scores selon les coups donnés par les joueurs*)
@@ -93,23 +111,25 @@ let tuple_score (res:coup * coup) :int*int =
   match res with 
     (C, C) -> (3, 3) | (C, D) -> (0, 5)| (D, C) -> (5, 0) | (D, D) -> (2, 2);;
 
+
+
 (*========================================== DÉROULEMENT TOURNOI & PARTIES =======================================================*)
 
 
 (*renvoie l'id associé à chaque strat*)
 let strat_to_int (j:strat) :int = 
   match j with
-    ALL_D -> 0 | RANDOM -> 1 | TIT_FOR_TAT -> 2 | TESTER -> 3 | JOSS -> 4;;
+    ALL_D -> 0 | RANDOM -> 1 | TIT_FOR_TAT -> 2 | TESTER -> 3 | JOSS -> 4 | CHILD -> 5 | UNDECIDED -> 6;;
 
 (*et inversement*)
 let int_to_strat (i:int) :strat = 
   match i with
-    0 -> ALL_D | 1 -> RANDOM | 2 -> TIT_FOR_TAT | 3 -> TESTER | 4 -> JOSS |  _ -> failwith "input insensé";;
+    0 -> ALL_D | 1 -> RANDOM | 2 -> TIT_FOR_TAT | 3 -> TESTER | 4 -> JOSS | 5 -> CHILD | 6 -> UNDECIDED | _ -> failwith "input insensé";;
 
 (*renvoie un string de chaque strat*)
 let strat_to_string (j:strat) :string = 
   match j with
-    ALL_D -> "ALL_D" | RANDOM -> "RANDOM" | TIT_FOR_TAT -> "TIT_FOR_TAT" | TESTER -> "TESTER" | JOSS -> "JOSS";;
+    ALL_D -> "ALL_D" | RANDOM -> "RANDOM" | TIT_FOR_TAT -> "TIT_FOR_TAT" | TESTER -> "TESTER" | JOSS -> "JOSS" | CHILD -> "CHILD" | UNDECIDED -> "UNDECIDED";;
 
 (*Fonction qui régit le déroulement d'une manche entre 2 joueurs*)
 let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref) (cpt:int ref) (tester_state:int ref):unit = 
