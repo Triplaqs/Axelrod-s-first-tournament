@@ -3,6 +3,7 @@ Axelrod’s first tournament agent implementation in OCaml.
 
 The code with all the tournament can be compiled with ```ocamlc tournoi.ml -o ./out/lancer``` and launched with ```./out/lancer```
 
+Then enter the numbers according to what tournament you want to run. All the information will be displayed in the terminal.
 
 ## Journal de bord du projet
 
