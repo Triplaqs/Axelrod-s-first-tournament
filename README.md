@@ -220,6 +220,22 @@ Le problème (très bête) a été retrouvé, nous n'avions pas modifié cette v
 
 ![Variable globale qui pose problème](./imgs/pb_debug.png)
 
+Le problème était toujours là, en cherchant mieux le vrai problème était cette ambiguieté entre une variable locale i de pattern matching réinjectée dans la fonction appelée à la place du paramètre i qui aurait du y être (censé être 0 et 1) avec le i local qui va jusqu'à 20.
+
+
+![Variable locale qui pose problème](./imgs/pb_debug2.png)
+
+On a enfin un programme et 2 nouveaux agents qui fonctionnent :
+
+![Résultat à 7 agents pt1](./imgs/2res_1.png)
+
+
+![Résultat à 7 agents pt2](./imgs/2res_2.png)
+
+
+![Résultat à 7 agents pt3](./imgs/2res_3.png)
+
+
 ### Nouvelles règles : présentations et prévisions
 
 
