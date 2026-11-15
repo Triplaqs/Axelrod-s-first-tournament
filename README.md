@@ -238,14 +238,16 @@ On a enfin un programme et 2 nouveaux agents qui fonctionnent :
 Cette fois-ci notre classement global est le suivant :
 
 ```
-1er  : TIT_FOR_TAT
-2ème : ALL_D
-3ème : JOSS
-4ème : TESTER
+1er  : ALL_D
+2ème : TIT_FOR_TAT
+3ème : UNDECIDED
+4ème : JOSS
 5ème : RANDOM
-6ème : CHILD
-7ème : UNDECIDED
+6ème : TESTER
+7ème : CHILD
 ```
+
+Mes prédictions sur le comportement de l'addition de ```CHILD``` et ```UNDECIDED``` étaient érronnées... Il se trouve que la chance leur a été plus favorable que prévue. Une étude bien plus longue et chronophage sur les comportements 2 à 2 entres stratégies pourraient être menée, mais on préférera entammer l'étape 4 : les bonus de tournoi.
 
 ### Nouvelles règles : présentations et prévisions
 
