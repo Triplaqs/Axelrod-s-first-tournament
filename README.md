@@ -1,6 +1,8 @@
 # Axelrod-s-first-tournament
 Axelrod’s first tournament agent implementation in OCaml.
 
+The code with all the tournament can be launched with ```./out/lancer```
+
 
 ## Journal de bord du projet
 
