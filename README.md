@@ -306,8 +306,6 @@ On ajoute aussi une variable globale ```w``` qu'on laissera l'utilisateur entrer
 Ainsi nous avons fini l'implémentation de la fonction ```Horizon Nouveau```.
 
 
-![Programme final Horizon Nouveau](./imgs/newH_code3.png)
-
 Cela donne les résultats suivants :
 
 
