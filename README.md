@@ -27,9 +27,10 @@ WHOLE TOURNAMENT : 2
 And also :
 
 ```
-sans modification : 0
-?  : 1
-?  : 2
+Sans modification : 0, 0
+Bruit             : 1, 0
+Horizon Nouveau   : 0, 1
+Les deux          : 1, 1 
 ```
 
 ## Journal de bord du projet
