@@ -14,9 +14,13 @@ type score = int array;; (*score.(k) = score du joueur k*)
 let nb_s = 7;; (*on initialise 5 stratégies + 2 nouvelles*)
 let feat1 = ref 0;;
 let feat2 = ref 0;; (* pour l'étape 4 on initialise le match sans modifications*)
+let w = ref 20;;
 
 (*============================================== PARAMÈTRAGE DES FONCTIONS DE TRANSFERT ===============================================================*)
 
+(*Fonction valeur absolue*)
+let ab (z:int) :int = 
+  if z <=0 then -z else z;;
 
 (*renvoie l'id associé à chaque strat*)
 let strat_to_int (j:strat) :int = 
@@ -56,7 +60,7 @@ let coup_random () :coup =
 (*AGENT TIT_FOR_TAT*)
 let coup_TFT (p:plateau) (i:int) (cpt:int ref) :coup = 
   if !cpt = 0 then C else (
-    p.(2*(!cpt -1) + (1-i))
+    p.(2*((ab !cpt) -1) + (1-i))
   );;
 
 (*AGENT TESTER*)
@@ -108,7 +112,7 @@ let coup_joss (p:plateau) (i:int) (cpt:int ref) :coup =
 (*AGENT CHILD*)
 let coup_child (p:plateau) (i:int) (cpt: int ref) : coup =
   if !cpt = 0 then coup_random () else (
-    op_coup (p.(2*(!cpt -1) + (1-i)))  (*joue le coup opposé du précédent de son adversaire*)
+    op_coup (p.(2*((ab !cpt) -1) + (1-i)))  (*joue le coup opposé du précédent de son adversaire*)
   );;
 
 
@@ -148,6 +152,7 @@ and joue_coup (p:plateau) (j:strat) (i:int) (cpt:int ref) (tester_state:int ref)
 let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref) (cpt:int ref) (tester_state:int ref) (und_cpt:int ref) (und_strat:int ref) :unit = 
     (*score.(strat_to_int j1) <- score.score.(strat_to_int j1);*)
     if !cpt >= 200 then (
+        cpt:= !cpt + 2;
         print_string ("\nscores : \n" ^ (strat_to_string j1) ^ " : "); print_int !s1;
         print_string ("\n" ^ (strat_to_string j2) ^ " : "); print_int !s2; print_string "\n";
         if !s1 > !s2 then 
@@ -165,8 +170,11 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
 
       if !feat1 = 1 then (let ri = Random.int 100 in if (ri <=5) then coup_J1 := op_coup (!coup_J1));
       if !feat1 = 1 then (let ri = Random.int 100 in if (ri <=5) then coup_J2 := op_coup (!coup_J2));
+    
 
-      
+
+
+
       (*TEST
       if (!cpt <=14) then (
         print_string ("coup J1 ("^(strat_to_string j1)^") : "^(coup_to_string coup_J1)^"\n");
@@ -177,7 +185,12 @@ let partie (p:plateau) (s:score) (j1:strat) (j2:strat) (s1:int ref) (s2:int ref)
       let score_J1, score_J2 = tuple_score coups in 
       s1 := !s1 + score_J1; s2 := !s2 + score_J2;
 
-      p.(!cpt*2)<-(!coup_J1); p.(!cpt*2+1)<-(!coup_J2);
+      p.((ab !cpt)*2)<-(!coup_J1); p.((ab !cpt)*2+1)<-(!coup_J2);
+
+      (*ACTIVATION HORIZON NOUVEAU*)
+      if !feat2 = 1 then (
+        let ri = Random.int 100 in if (ri <=(!w)) then (print_string "\nOn a effectué "; print_int (ab !cpt); print_string " tours.\n"; cpt := 201)
+      );
     );;
   
 (*AFFICHAGE SCORE DEBUG*)      
@@ -198,7 +211,7 @@ let debut_partie (s:score) (j1:strat) (j2:strat) :unit =
     let p = Array.make 400 C in (**)
     while !cpt <= 200 do 
       partie p s j1 j2 sc1 sc2 cpt test_st undecided_cpt undecided_strat;
-      cpt:= !cpt + 1
+      if (!feat2 = 0) then (cpt:= !cpt + 1) else (cpt := !cpt -1);  (*ajout de la feature nouveau Horizon*)
     done; 
     s.(strat_to_int j1)<- s.(strat_to_int j1) + !sc1;
     s.(strat_to_int j2)<- s.(strat_to_int j2) + !sc2;;
@@ -250,8 +263,11 @@ let feats () :unit =
   feat1 := read_int ();
   print_string "Voulez-vous activer la fonction Horizon Inconnu ? Entrez 0 pour non et 1 pour oui\n";
   feat2 := read_int ();
+  if !feat2 = 1 then print_string "\nChoisissez la probabilité de fin en pourcentage (w/100) :\n";
+  w := read_int ();
   tournoi ();;
 
+(*Tournoi individuel*)
 let rec tournoi_perso () :unit = 
   print_string "Quelle stratégie voulez comme Joueur 1 ? Entrez le nombre adapté :\nALL_D       : 0\nRANDOM      : 1\nTIT_FOR_TAT : 2\nTESTER      : 3\nJOSS        : 4\nCHILD       : 5\nUNDECIDED   : 6\n";
   let rj1 = read_int () in
@@ -265,7 +281,7 @@ let rec tournoi_perso () :unit =
       print_string ("Le joueur avec la stratégie " ^ (strat_to_string (int_to_strat i))^" termine le tournoi avec un score de "); print_int sco.(i); print_string "!!\n";
     done;;
 
-
+(*Main du programme = début de l'interface*)
 let rec main () :unit = 
   print_string "Que voulez vous faire ? Entrez le nombre adapté :\nJouer un échange particulier entre 2 joueurs/stratégies (1)\nJouer tout le tournoi (2)\n";
   let r = read_int () in
