@@ -287,4 +287,49 @@ Sinon en continuiant le projet en dehors du temps imparti, voici les résultats 
 
 ![Résultats tournoi avec bruit 3](./imgs/res_bruit3.png)
 
+On code ```Horizon Nouveau``` :
+
+
+![Détournement du compteur](./imgs/newH_code1.png)
+
+On prend le compteur de tours en hotage et on le fait aller dans les négatifs, pour qu'ils n'activent pas la condition du while et qu'on puisse malgré tout compter combien de tours on fait.
+
+
+![Nouvel arrêt stocastique](./imgs/newH_code2.png)
+
+On fait similairement à ```Bruit``` une selection probabiliste en proportion sur 100 afin d'arrêter la boucle.
+
+Cela requiert malheureusement de transformer ```cpt``` en sa valeur absolue lors de tous les appels d'indice en tableau, mais ce n'est pas grave  nous le ferons.
+
+On ajoute aussi une variable globale ```w``` qu'on laissera l'utilisateur entrer, elle fait office de la probabilité, ```w``` entier entre 0 et 99 définit la probabilité d'arrêter le tour en pourcentage.
+
+Ainsi nous avons fini l'implémentation de la fonction ```Horizon Nouveau```.
+
+
+Cela donne les résultats suivants :
+
+
+![Résultats tournoi avec Horizon Nouveau](./imgs/res_hn1.png)
+
+w = 20
+
+
+![Résultats tournoi avec Horizon Nouveau 2](./imgs/res_hn2.png)
+
+w = 50
+
+
+![Résultats tournoi avec Horizon Nouveau 3](./imgs/res_hn3.png)
+
+w = 75
+
+### Fin du journal
+
+
+
+
+
+
+
+
 
