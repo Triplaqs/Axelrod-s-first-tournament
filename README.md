@@ -306,7 +306,7 @@ On ajoute aussi une variable globale ```w``` qu'on laissera l'utilisateur entrer
 Ainsi nous avons fini l'implémentation de la fonction ```Horizon Nouveau```.
 
 
-![Nouvel arrêt stocastique](./imgs/newH_code3.png)
+![Programme final Horizon Nouveau](./imgs/newH_code3.png)
 
 Cela donne les résultats suivants :
 
