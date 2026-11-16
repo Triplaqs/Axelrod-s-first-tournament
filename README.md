@@ -33,6 +33,9 @@ Horizon Nouveau   : 0, 1
 Les deux          : 1, 1 
 ```
 
+Pour ```Horizon Nouveau``` on renseignera la probabilité en question via le paramètre ```w``` qui est le pourcentage de chance d'arrêter le match. $p = \frac{w}{100}$
+
+
 ## Journal de bord du projet
 
 
